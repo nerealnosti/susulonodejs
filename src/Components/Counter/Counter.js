@@ -1,34 +1,14 @@
 import React, { useState } from 'react';
 
-export default function Counter({ targetCount, slowdownspeed = 10, speed = 1, increment = parseInt(targetCount * 0.01) }) {
+export default function Counter({ targetCount, speed = 0.009, increment = 1 }) {
 
     const [counter, setCounter] = useState(0);
-    
-    if (increment % 10 === 0) {
-        increment++;
-    }
-    if (targetCount < 100) {
-        increment = 1;
-        speed = 10;
-    }
+    increment += (targetCount * speed) + 1;
 
-    if (counter > +(targetCount * 0.96)) {
-        speed = 80;
-        increment = parseInt(targetCount * 0.007);
-    }
 
-    if (increment >= targetCount - counter - slowdownspeed) {
-        increment = targetCount - counter - slowdownspeed;
-    }
-
-    if (counter >= targetCount - slowdownspeed) {
-        speed = 100;
-        increment = 2;
-    }
-
-    if (counter >= targetCount - 1) {
-        speed = 400
-        increment = 1
+    if (counter >= +(targetCount * 0.80)) {
+        speed = 20;
+        increment = (targetCount - counter) * 0.1;
     }
 
     const counting = () => {
@@ -42,8 +22,10 @@ export default function Counter({ targetCount, slowdownspeed = 10, speed = 1, in
     }
 
     return (
-        <label className="counter" onLoad={counting()}>
-            {counter}
-        </label>
+        <div>
+            <label className="counter" onLoad={counting()}>
+                {(counter).toFixed(0)}
+            </label>
+        </div>
     )
 }
