@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import InputStar from './InputStar'
+import { nanoid } from 'nanoid';
 
 export default function RaitingApp({ Nstarts = 5, overallRating = 4.7 }) {
- 
+
     const [raiting, setRaiting] = useState(overallRating);
     const [hover, setHover] = useState(null);
-
+    const name = nanoid();
     return (
         <>
             <div className="stars">
@@ -17,6 +18,7 @@ export default function RaitingApp({ Nstarts = 5, overallRating = 4.7 }) {
                         onClick={() => setRaiting(i + 1)}
                         onMouseEnter={() => setHover(i + 1)}
                         onMouseLeave={() => setHover(null)}
+                        name={name}
                     />
                 )}
             </div>

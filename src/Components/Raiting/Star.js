@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Star({ selected = false, size = 10, activeColor = '#FFE429', inActiveColor = '#aaa' }) {
+export default function Star({ selected = false, size = 10, activeColor = '#FFDB19', inActiveColor = '#aaa' }) {
     return (
         <svg xmlns="http://www.w3.org/" width={size} height={size} viewBox="0 0 34 36">
             <path
